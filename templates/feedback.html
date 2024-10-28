@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .fixed-back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000; /* Ensure it's on top of other content */
+        }
+        .form-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-left: auto; /* Center the form horizontally */
+            margin-right: auto; /* Center the form horizontally */
+            max-width: 1000px; /* Set a max width for the form */
+        }
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        h3 {
+            color: black;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ff8117;
+            border-radius: 5px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #ff8117;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            width: 20%;
+            padding: 12px;
+            background-color: rgb(0, 155, 0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            display: block; /* Added to use margin auto */
+            margin: 0 auto; /* Centers the button */
+        }
+        button:hover {
+            background-color: rgb(0, 155, 0);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+        .logo {
+            max-width: 17%; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto 20px; 
+        }
+        .feedback-question {
+            margin-top: 20px;
+        }
+        @media (max-width: 576px) {
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="btn fixed-back-button" style="background-color: #ff8117; color: #FFFFFF;">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="container-fluid">        
+        <div class="form-container">
+            <img src="https://www.takshashilauniv.ac.in/wp-content/uploads/2023/04/taklogo.png" alt="Logo" class="logo">
+            <h3 style="color: #ff8117;">Student Feedback Form</h3>
+            <form action="{{ url_for('feedback') }}" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="regNumber">Registration Number:</label>
+                        <input type="text" id="regNumber" name="regNumber" placeholder="Enter Your Register Number" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="studentName">Student Name:</label>
+                        <input type="text" id="studentName" name="studentName" placeholder="Enter your Name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="department">Department:</label>
+                        <select id="department" name="department" required>
+                            <option value="" disabled selected>Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Business Administration">Business Administration</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="semester">Semester:</label>
+                        <select id="semester" name="semester" required>
+                            <option value="" disabled selected>Select Semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="subject">Subject Name:</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Database Systems">Database Systems</option>
+                            <option value="Operating Systems">Operating Systems</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Microprocessors">Microprocessors</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cat">CAT:</label>
+                        <select name="cat" id="cat" required>
+                            <option value="" disabled selected>Select Your Category</option>
+                            <option value="CAT 1">CAT-1</option>
+                            <option value="CAT 2">CAT-2</option>
+                            <option value="CAT 3">CAT-3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="feedback-question">
+                    <h3 style="color: #ff8117;">Feedback Questions</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>1. How would you rate the course content?</label>
+                            <select name="q1" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>2. How would you rate the instructor's teaching?</label>
+                            <select name="q2" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>3. Was the course material helpful?</label>
+                            <select name="q3" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>4. How likely are you to recommend this course?</label>
+                            <select name="q4" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>5. Overall, how would you rate your experience?</label>
+                            <select name="q5" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <p>© Copyright Komban Tech 2024</p>
+    </div>
+</body>
+</html>
